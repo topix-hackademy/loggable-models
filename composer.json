@@ -1,5 +1,5 @@
 {
-  "name": "topix-hackademy/laravel-wowza-restapi",
+  "name": "topix-hackademy/loggable-models",
   "description": " A package to add log on models so that can be retrieved anytime ",
   "license": "MIT",
   "authors": [
