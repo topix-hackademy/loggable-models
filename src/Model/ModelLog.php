@@ -18,4 +18,12 @@ class ModelLog extends Eloquent
         return $this->morphTo();
     }
 
+    /**
+     * @return mixed
+     */
+    public function scopeOfLevel($query,$level)
+    {
+        $query->where('level', $level);
+    }
+
 }

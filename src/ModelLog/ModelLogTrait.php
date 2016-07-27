@@ -10,17 +10,9 @@ use Topix\Hackademy\LoggableModels\ModelLogHandler;
  * Date: 27/07/16
  * Time: 14:46
  */
-class ModelLogTrait implements ModelLogInterface
+trait ModelLogTrait
 {
-
-    /**
-     * @return mixed
-     */
-    public function logs()
-    {
-        return $this->morphOne(ModelLog::class, 'modelloggable');
-
-    }
+    use ModelLogConvenienceTrait, ModelLogScopesTrait;
     /**
      * System is unusable.
      *
@@ -31,7 +23,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function emergency($message, array $context = array())
     {
-        $this->log(ModelLogHandler::EMERGENCY,$message,$context);
+        return $this->log(ModelLogHandler::EMERGENCY,$message,$context);
     }
 
     /**
@@ -47,7 +39,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function alert($message, array $context = array())
     {
-        $this->log(ModelLogHandler::ALERT,$message,$context);
+        return $this->log(ModelLogHandler::ALERT,$message,$context);
     }
 
     /**
@@ -62,7 +54,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function critical($message, array $context = array())
     {
-        $this->log(ModelLogHandler::CRITICAL,$message,$context);
+        return $this->log(ModelLogHandler::CRITICAL,$message,$context);
     }
 
     /**
@@ -76,7 +68,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function error($message, array $context = array())
     {
-        $this->log(ModelLogHandler::ERROR,$message,$context);
+        return $this->log(ModelLogHandler::ERROR,$message,$context);
     }
 
     /**
@@ -92,7 +84,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function warning($message, array $context = array())
     {
-        $this->log(ModelLogHandler::WARNING,$message,$context);
+        return $this->log(ModelLogHandler::WARNING,$message,$context);
     }
 
     /**
@@ -105,7 +97,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function notice($message, array $context = array())
     {
-        $this->log(ModelLogHandler::NOTICE,$message,$context);
+        return $this->log(ModelLogHandler::NOTICE,$message,$context);
     }
 
     /**
@@ -120,7 +112,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function info($message, array $context = array())
     {
-        $this->log(ModelLogHandler::INFO,$message,$context);
+        return $this->log(ModelLogHandler::INFO,$message,$context);
     }
 
     /**
@@ -133,7 +125,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function debug($message, array $context = array())
     {
-        $this->log(ModelLogHandler::DEBUG,$message,$context);
+        return $this->log(ModelLogHandler::DEBUG,$message,$context);
     }
 
 
@@ -148,10 +140,7 @@ class ModelLogTrait implements ModelLogInterface
      */
     public function log($level, $message, array $context = array()){
 
-        return $this->logs()->create( [
-            'level' => $level,
-            'message' => $message,
-            'context' => $context
-        ]);
+        return model_log($this, $level, $message, $context);
+        
     }
 }

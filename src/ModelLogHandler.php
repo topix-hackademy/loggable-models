@@ -62,9 +62,14 @@ class ModelLogHandler implements LoggerInterface
      */
     protected $model;
 
+    /**
+     * @param ModelLogInterface $model
+     * @return $this
+     */
     public function with(ModelLogInterface $model)
     {
         $this->model = $model;
+        return $this;
     }
 
     /**
@@ -77,7 +82,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function emergency($message, array $context = array())
     {
-        $this->log(static::EMERGENCY,$message,$context);
+        return $this->log(static::EMERGENCY,$message,$context);
     }
 
     /**
@@ -93,7 +98,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function alert($message, array $context = array())
     {
-        $this->log(static::ALERT,$message,$context);
+        return $this->log(static::ALERT,$message,$context);
     }
 
     /**
@@ -108,7 +113,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function critical($message, array $context = array())
     {
-        $this->log(static::CRITICAL,$message,$context);
+        return $this->log(static::CRITICAL,$message,$context);
     }
 
     /**
@@ -122,7 +127,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function error($message, array $context = array())
     {
-        $this->log(static::ERROR,$message,$context);
+        return $this->log(static::ERROR,$message,$context);
     }
 
     /**
@@ -138,7 +143,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function warning($message, array $context = array())
     {
-        $this->log(static::WARNING,$message,$context);
+        return $this->log(static::WARNING,$message,$context);
     }
 
     /**
@@ -151,7 +156,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function notice($message, array $context = array())
     {
-        $this->log(static::NOTICE,$message,$context);
+        return $this->log(static::NOTICE,$message,$context);
     }
 
     /**
@@ -166,7 +171,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function info($message, array $context = array())
     {
-        $this->log(static::INFO,$message,$context);
+        return $this->log(static::INFO,$message,$context);
     }
 
     /**
@@ -179,7 +184,7 @@ class ModelLogHandler implements LoggerInterface
      */
     public function debug($message, array $context = array())
     {
-        $this->log(static::DEBUG,$message,$context);
+        return $this->log(static::DEBUG,$message,$context);
     }
 
     /**
@@ -194,12 +199,13 @@ class ModelLogHandler implements LoggerInterface
     public function log($level, $message, array $context = array())
     {
 
-        Log::log($level,$message,$context);
+        app('log')->log($level,$message,$context);
 
         $this->model->logs()->create( [
             'level' => $level,
             'message' => $message,
             'context' => $context
         ]);
+        return $this;
     }
 }
