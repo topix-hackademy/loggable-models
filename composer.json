@@ -1,0 +1,32 @@
+{
+  "name": "topix-hackademy/laravel-wowza-restapi",
+  "description": " A package to add log on models so that can be retrieved anytime ",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "gab88slash",
+      "email": "consigliog@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "psr/log": "^1.0"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^2.0",
+    "henrikbjorn/phpspec-code-coverage": "^2.0",
+    "illuminate/support": "^5.2",
+    "symfony/var-dumper": "^3.1",
+    "laravel/framework": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Topix\\Hackademy\\LoggableModels\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Topix\\Hackademy\\LoggableModels\\Test\\": "test/"
+    }
+  }
+}
