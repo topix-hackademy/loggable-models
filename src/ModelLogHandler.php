@@ -57,6 +57,20 @@ class ModelLogHandler implements LoggerInterface
      */
     const EMERGENCY = 600;
 
+
+
+    protected $levelMapping = [
+
+        self::DEBUG => 'debug',
+        self::INFO => 'info',
+        self::NOTICE => 'notice',
+        self::WARNING => 'warning',
+        self::ERROR => 'error',
+        self::CRITICAL => 'critical',
+        self::ALERT => 'alert',
+        self::EMERGENCY => 'emergency'
+        ];
+
     /**
      * @var ModelLogInterface
      */
@@ -199,7 +213,7 @@ class ModelLogHandler implements LoggerInterface
     public function log($level, $message, array $context = array())
     {
 
-        app('log')->log($level,$message,$context);
+        app('log')->log($this->levelMapping[$level], $message, $context);
 
         $this->model->logs()->create( [
             'level' => $level,

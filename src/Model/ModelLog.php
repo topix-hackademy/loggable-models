@@ -1,6 +1,6 @@
 <?php
 
-namespace Topix\Hackademy\LoggableModels\ModelLog\Model;
+namespace Topix\Hackademy\LoggableModels\Model;
 
 /**
  * Created by PhpStorm.
@@ -12,6 +12,12 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class ModelLog extends Eloquent
 {
+
+    protected $fillable = ['level', 'message', 'context'];
+
+    protected $casts = [
+        'context' => 'array',
+    ];
 
     public function modelloggable()
     {

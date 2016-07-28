@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelLogTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,10 @@ class CreateModelLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_logs', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
 
             $table->increments('id');
-
-            $table->morphs('modelloggable');
-
-            $table->integer('level');
-            $table->string('message');
-            $table->json('context');
-
+            $table->string('text');
             $table->timestamps();
 
         });
@@ -34,6 +28,6 @@ class CreateModelLogTable extends Migration
      */
     public function down()
     {
-        Schema::drop('model_logs');
+        Schema::drop('posts');
     }
 }

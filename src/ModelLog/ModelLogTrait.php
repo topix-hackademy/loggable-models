@@ -1,7 +1,7 @@
 <?php
 
 namespace Topix\Hackademy\LoggableModels\ModelLog;
-use Topix\Hackademy\LoggableModels\ModelLog\Model\ModelLog;
+
 use Topix\Hackademy\LoggableModels\ModelLogHandler;
 
 /**
