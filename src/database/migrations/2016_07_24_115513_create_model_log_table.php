@@ -23,6 +23,7 @@ class CreateModelLogTable extends Migration
             $table->json('context');
 
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

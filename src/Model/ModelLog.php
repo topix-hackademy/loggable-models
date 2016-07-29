@@ -9,10 +9,11 @@ namespace Topix\Hackademy\LoggableModels\Model;
  * Time: 15:46
  */
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ModelLog extends Eloquent
 {
-
+    use SoftDeletes;
     protected $fillable = ['level', 'message', 'context'];
 
     protected $casts = [
