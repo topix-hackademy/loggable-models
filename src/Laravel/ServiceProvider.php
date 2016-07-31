@@ -28,7 +28,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $this->publishes([$configPath => $this->getConfigPath()], 'config');
 
-        $this->publishes([ realpath( __DIR__ . '/database/migrations/' ) => database_path('migrations')], 'migrations');
+        $this->publishes([ realpath( __DIR__ . '/../database/migrations/' ) => database_path('migrations')], 'migrations');
 
         // Define Custom Polymorphic Types
         Relation::morphMap([
