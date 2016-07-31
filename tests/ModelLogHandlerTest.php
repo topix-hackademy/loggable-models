@@ -20,5 +20,7 @@ class ModelLogHandlerTest extends TestCase
         $post->alert($message);
 
         $this->assertContainsOnlyInstancesOf(ModelLog::class, $post->alerts());
+
+        $this->assertEquals(Post::hasAlerts()->first()->text,$post->text);
     }
 }
