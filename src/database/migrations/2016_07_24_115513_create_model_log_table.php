@@ -20,7 +20,11 @@ class CreateModelLogTable extends Migration
 
             $table->integer('level');
             $table->string('message');
-            $table->json('context');
+            if ((DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') && version_compare(DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION), '5.7.8', 'ge')) {
+                $table->json('context');
+            } else {
+                $table->text('context');
+            }
 
             $table->timestamps();
             $table->softDeletes();
