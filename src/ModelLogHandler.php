@@ -213,7 +213,7 @@ class ModelLogHandler implements LoggerInterface
     public function log($level, $message, array $context = array())
     {
 
-        app('log')->log($this->levelMapping[$level], $message, $context);
+        app('log')->log($this->getPrintableLevel($level), $message, $context);
 
         $this->model->logs()->create( [
             'level' => $level,
@@ -221,5 +221,15 @@ class ModelLogHandler implements LoggerInterface
             'context' => $context
         ]);
         return $this;
+    }
+
+    /**
+     * Returns the printable version of the level
+     * @param $level
+     * @return mixed
+     */
+    public function getPrintableLevel($level)
+    {
+        return $this->levelMapping[$level];
     }
 }
