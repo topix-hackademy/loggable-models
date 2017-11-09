@@ -24,18 +24,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $configPath = realpath(__DIR__ . '/../config/loggableModels.php');
-
-        $this->publishes([$configPath => $this->getConfigPath()], 'config');
-
         $this->publishes([ realpath( __DIR__ . '/../database/migrations/' ) => database_path('migrations')], 'migrations');
 
         // Define Custom Polymorphic Types
         Relation::morphMap([
 
         ]);
-
-        $this->mergeConfigFrom($configPath, 'loggableModels');
 
         $this->app->bind('loggable-models', function () {
             return new ModelLogHandler();
