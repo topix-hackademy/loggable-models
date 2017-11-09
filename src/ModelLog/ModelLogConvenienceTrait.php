@@ -19,7 +19,7 @@ trait ModelLogConvenienceTrait
      */
     public function logs()
     {
-        return $this->morphOne(ModelLog::class, 'modelloggable');
+        return $this->morphMany(ModelLog::class, 'modelloggable');
 
     }
 
